@@ -8,7 +8,10 @@ int main() {
     int from_total = 11*24*60 + 11*60 + 11;
     int to = A*24*60 + B*60 + C;
     if (to < from_total)
+    {
         printf("%d\n", -1);
+        return (0);
+    }
     printf("%d\n", to - from_total);
     return 0;
 }
