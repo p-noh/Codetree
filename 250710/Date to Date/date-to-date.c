@@ -8,6 +8,11 @@ int main(void) {
     int from = 0;
     int to = 0;
     int num_of_days[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if (m1 == m2 && d1 == d2)
+    {
+        printf("1");
+        return (0);
+    }
     while (m1 > 0)
     {
         from += num_of_days[m1];
