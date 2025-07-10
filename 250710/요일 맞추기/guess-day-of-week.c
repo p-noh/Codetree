@@ -16,11 +16,9 @@ int main() {
     for(int i=0; i<m2; i++)
         to += num_of_days[i];
     to += d2;
-    int ans = 0;
-    if (d2 > d1)
-        ans = (d2 - d1) % 7;
-    else
-        ans = 6 - ((d1 - d2) % 7);
+    int ans = (to - from) % 7;
+    if (ans < 0)
+        ans += 7;
     printf("%s\n", day[ans]);
     return 0;
 }
