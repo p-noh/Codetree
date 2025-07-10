@@ -20,7 +20,7 @@ int main() {
     if (d2 > d1)
         ans = (d2 - d1) % 7;
     else
-        ans = 7 - ((d1 - d2) % 7);
+        ans = 6 - ((d1 - d2) % 7);
     printf("%s\n", day[ans]);
     return 0;
 }
