@@ -9,35 +9,34 @@ int main() {
     for (int i = 0; i < n; i++) {
         scanf("%d %d", &x1[i], &x2[i]);
     }
-    
-    // Please write your code here.
-    int min = 100;
-    for (int i = 0; i < n; i++) {
+
+    // 최소 좌표 찾기
+    int min = x1[0];
+    for (int i = 1; i < n; i++) {
         if (min > x1[i])
             min = x1[i];
     }
-    if (min < 0){
-        for (int i = 0; i < n; i++) {
-            x1[i] += min;
-            x2[i] += min;
+
+    int offset = (min < 0) ? -min : 0;
+    int arr[401] = {0}; // 충분한 범위 확보
+
+    // 구간별 겹치는 개수 세기
+    for (int i = 0; i < n; i++) {
+        int from = x1[i] + offset;
+        int to = x2[i] + offset;
+
+        while (from < to) {
+            arr[from++] += 1;
         }
     }
-    int arr[200] = {0};
-    int from, to;
-    for(int i = 0; i < n; i++)
-    {
-        from = x1[i];
-        to = x2[i];
-        while (from < to)
-        {
-            arr[from++]++;
-        }
-    }
+
+    // 최대 겹치는 지점 구하기
     int max = 0;
-    for(int i = 0; i < 200; i++){
+    for (int i = 0; i < 401; i++) {
         if (max < arr[i])
             max = arr[i];
     }
+
     printf("%d\n", max);
     return 0;
 }
