@@ -13,7 +13,7 @@ int main(void) {
         digit[i] = n % 2;
         n /= 2;
     }
-    digit[i] = 1;
+    digit[i] = n;
     for (i; i >= 0; i--)
         printf("%d", digit[i]);
     return 0;
