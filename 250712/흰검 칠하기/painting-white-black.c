@@ -23,7 +23,6 @@ int main() {
 
     int cur = 0;
     int offset = 0;
-    int max = 0;
     int dis;
     char dir;
 
@@ -36,27 +35,28 @@ int main() {
             cur += dis;
         if (cur < offset)
             offset = cur;
-        if (cur > max)
-            max = cur;
     }
     cur = -offset;
-    max = cur + max;
     tile    line[2000001] = {0};
     position    pos;
+    int min = 2000000, max = 0;
     for (int i = 0; i < n; i++)
     {
         dis = x[i];
         dir = d[i];
         if (dir == 'L'){
-            pos.start = cur - dis;
-            pos.end = cur;
-            cur -= dis;
+            pos.start = cur - dis + 1;
+            pos.end = cur + 1;
+            cur = pos.start;
         }
         else {
             pos.start = cur;
             pos.end = cur + dis;
-            cur += dis;
+            cur = pos.end - 1;
         }
+        if (pos.start < min) min = pos.start;
+        if (pos.end > max) max = pos.end;
+
         for (int j = pos.start; j < pos.end; j++) {
             if (line[j].col == 'g') continue;
             if (dir == 'L')
@@ -72,7 +72,7 @@ int main() {
     int white = 0;
     int black = 0;
     int grey = 0;
-    for (int i = 0; i < max; i++)
+    for (int i = min; i < max; i++)
     {
         if (line[i].col == 'w')
             white++;
