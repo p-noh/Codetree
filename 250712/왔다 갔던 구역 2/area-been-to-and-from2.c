@@ -11,42 +11,51 @@ int main() {
         scanf("%d %c", &distances[i], &directions[i]);
     }
     // Please write your code here.
-    int line[2001] = {0};
-    char dir;
-    int cnt;
-    int position = 0;
+    typedef struct s_position{
+        int start;
+        int end;
+    } position;
+
+    int cur = 0;
     int offset = 0;
-    for (int i = 0; i < n; i++)
-    {
+    int dis;
+    char dir;
+    //가장 작은 수 찾기.
+    for (int i=0; i<n; i++) {
+        dis = distances[i];
         dir = directions[i];
-        cnt = distances[i];
         if (dir == 'L')
-            position -= cnt;
+            cur -= dis;
         else
-            position += cnt;
-        if (position < offset)
-            offset = position;
-            
+            cur += dis;
+        if (cur < offset)
+            offset = cur;
     }
-    position = -offset;
+    cur = -offset;
+    position pos;
+    int     line[2000] = {0};
     for (int i = 0; i < n; i++)
     {
+        dis = distances[i];
         dir = directions[i];
-        cnt = distances[i];
-        while (cnt--)
-        {
-            line[position]++;
-            if (dir == 'R')
-                position++;
-            else
-                position--;
+        if (dir == 'L'){
+            pos.start = cur - dis;
+            pos.end = cur;
+            cur -= dis;
+        }
+        else {
+            pos.start = cur;
+            pos.end = cur + dis;
+            cur += dis;
+        }
+        for (int j = pos.start; j < pos.end; j++) {
+            line[j]++;
         }
     }
     int ans = 0;
-    for (int i = 0; i < 2000; i++)
-    {
-       if (line[i] >= 2)
-        ans++;
+    for(int i = 0; i < 2000; i++){
+        if (line[i] >= 2)
+            ans++;
     }
     printf("%d\n", ans);
     return 0;
