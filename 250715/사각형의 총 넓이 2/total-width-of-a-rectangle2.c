@@ -22,10 +22,10 @@ int main() {
     int grid[201][201] = {0};
     for (int i = 0; i < n; i++)
     {
-        int x_start = x1[i] + x_min;
-        int x_end = x2[i] + x_min;
-        int y_start = y1[i] + y_min;
-        int y_end = y2[i] + y_min;
+        int x_start = x1[i] - x_min;
+        int x_end = x2[i] - x_min;
+        int y_start = y1[i] - y_min;
+        int y_end = y2[i] - y_min;
         for (int j = x_start; j < x_end; j++)
         {
             for (int k = y_start; k < y_end; k++)
