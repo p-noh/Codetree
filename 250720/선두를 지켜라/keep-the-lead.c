@@ -28,18 +28,18 @@ int main() {
     int total_time_B = 0;
     for (int i = 0; i < m; i++) {
         for (int t = 0; t < B_t[i]; t++) {
-            B_pos[total_time_B + t + 1] = A_pos[total_time_B + t] + B_v[i];
+            B_pos[total_time_B + t + 1] = B_pos[total_time_B + t] + B_v[i];
         }
         total_time_B += B_t[i];
     }
-    char *first = calloc(total_time_A, sizeof(char));
-    for (int i = 0; i <= total_time_A; i++) {
+    char *first = calloc(total_time_A +1, sizeof(char));
+    for (int i = 1; i <= total_time_A; i++) {
         if (A_pos[i] > B_pos[i])
             first[i] = 'A';
         else if(A_pos[i] < B_pos[i])
             first[i] = 'B';
         else
-            first[i] = '_';
+            first[i] = first[i - 1];
     }
     int ans = 0;
     for (int i = 0; i < total_time_A; i++) {
