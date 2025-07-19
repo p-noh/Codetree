@@ -52,8 +52,9 @@ int main() {
     for (int i = 1; i <= total_time_A; i++){
         if (A_pos[i] == B_pos[i]) {
             printf("%d\n", i);
-            break;
+            return 0;
         }
     }
+    printf("-1");
     return 0;
 }
